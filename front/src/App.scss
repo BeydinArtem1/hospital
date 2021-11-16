@@ -1,0 +1,28 @@
+body {
+  background: #C5E9FF;
+
+  .logo {
+    position: absolute;
+    left: 15.33%;
+    right: 8.33%;    
+    bottom:16.5%;
+  }
+}
+
+@media (max-width: 1440px) {
+  body .logo {
+    position: absolute;
+    left: 12.33%;
+    right: 8.33%;
+    bottom: 25.5%;
+  }
+}
+
+// @media (max-width: 1024px) {
+//   .logo {
+//     position: absolute;    
+//     left: 4.33%;
+//     bottom: 6.5%;
+//     width: 450px;
+//   }
+// }
