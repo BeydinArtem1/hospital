@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background: #C5E9FF;
+
+  .main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;    
+
+    img, .container {
+      margin: 3%;
+    }
+  }
+}
+
