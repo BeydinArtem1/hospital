@@ -15,14 +15,14 @@ const AuthorizationComponent = () => {
           label='Login'
           variant='outlined'
           type='text'
-          />
+        />
         <p className="label">Password:</p>
         <TextField
           id='outlined-basic'
           label='Password'
           variant='outlined'
           type='password'
-          />
+        />
       </div>
       <div className='sign-val'>
         <Button
@@ -33,7 +33,8 @@ const AuthorizationComponent = () => {
         <Link
           to='/signup'
           className='label'
-        >Зарегистрироваться
+        >
+          Зарегистрироваться
         </Link>
       </div>
     </div>
