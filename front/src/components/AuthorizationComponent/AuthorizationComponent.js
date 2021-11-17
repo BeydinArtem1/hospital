@@ -1,22 +1,43 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './AuthorizationComponent.scss'
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import './AuthorizationComponent.scss';
 
 const AuthorizationComponent = () => {
-  return (<div className='container'>
-    <h1>Войти в систему</h1>
-    <div className='inputConainer'>
-      <p className="label">Login:</p>
-      <input type='text' placeholder='Login' />
-      <p className="label">Password:</p>
-      <input type='password' placeholder='Password' />
+  return (
+    <div className='container'>
+      <h1>Войти в систему</h1>
+      <div className='input-conainer'>
+        <p className="label">Login:</p>
+        <TextField
+          id='outlined-basic'
+          label='Login'
+          variant='outlined'
+          type='text'
+          />
+        <p className="label">Password:</p>
+        <TextField
+          id='outlined-basic'
+          label='Password'
+          variant='outlined'
+          type='password'
+          />
+      </div>
+      <div className='sign-val'>
+        <Button
+          variant='outlined'
+        >
+          Войти
+        </Button>
+        <Link
+          to='/signup'
+          className='label'
+        >Зарегистрироваться
+        </Link>
+      </div>
     </div>
-    <div className='signVal'>
-      <button>Войти</button>
-      <Link to='/signup'><p className='label'>Зарегистрироваться</p></Link>
-    </div>
-
-  </div>)
+  );
 }
 
 export default AuthorizationComponent

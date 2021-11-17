@@ -2,8 +2,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  flex-direction: column;
-  position: absolute;
+  flex-direction: column;  
   width: 550.5px;
   height: 650px;
   left: 55%;
@@ -27,7 +26,8 @@
     line-height: 42px;
     color: #000000;
   }
-  .inputConainer  {
+
+  .input-conainer  {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -35,7 +35,7 @@
     margin-top: -10%; 
 
     input {
-      width: 100%;
+      min-width: 410px;
       height: 50px;
       background: #FFFFFF;
       border: 1px solid rgba(0, 0, 0, 0.2);
@@ -43,32 +43,30 @@
       border-radius: 4px;  
       font-size: 18px;
       padding: 10px;
+
+      label {
+        width: 100%;
+      }
     }        
   }  
 
- .signVal {
+ .sign-val {
     display: flex;  
     align-items: flex-end;
     flex-direction: column;
     width: 75%;
 
-    button {
-      width: 160px;
-      height: 50px;
+    button {      
       background: #FFFFFF;
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-sizing: border-box;
       border-radius: 4px;
-      font-size: 16px;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.6);      
+      text-transform: capitalize;
+      margin-bottom: 7px;
+      min-width: 140px;
+      min-height: 50px;
     }   
- }  
+  }  
 }
-
-// @media (max-width: 1024px) {
-//   .container {
-//     width: 450px;
-//     height: 550px;
-//     left: 50%;
-//     top: 25%;
-//   } 
-// }

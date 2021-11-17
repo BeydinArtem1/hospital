@@ -1,8 +1,7 @@
 .header {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  position: absolute;
+  align-items: center;  
   width: 100%;
   height: 117px;
   left: 0px;
@@ -10,23 +9,22 @@
   background: #C5E9FF;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 
-  p {
-    position: absolute;    
-    height: 42px;
-    left: 27%;    
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 45px;
-    line-height: 42px;
-    color: #000000;
-  }
+  .header-container {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 
-  img {
-    position: absolute;
-    left: 8.33%;
-    right: 8.28%;
-    top: 19.32%;
-    bottom: 8.16%;
-  }
+    p {  
+      width: 70%;   
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 45px;
+      line-height: 42px;
+      color: #000000;
+      text-align: center;
+    }
+  }  
 }

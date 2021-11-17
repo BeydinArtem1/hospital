@@ -11,15 +11,26 @@ const App = () => {
     <Switch>
       <Route path='/signin'>
         <Header header='Войти в систему' />
-        <div className='main'>
-          <img className='logo' src={logo} alt='' />
+        <div className='main-container'>
+          <img
+            className='logo'
+            src={logo} alt=''
+          />
           <Authorization />
         </div>
       </Route>
       <Route path='/signup'>
         <Header header='Зарегистрироваться в системе' />
-        <img className='logo' src={logo} alt='' />
+        <div className='main-container'>
+        <img
+          className='logo'
+          src={logo} alt=''
+        />
         <Registration />
+        </div>
+      </Route>
+      <Route paht='/main'>
+        <Header header='Приемы' />
       </Route>
       <Redirect from='/' to='/signin' />
     </Switch>
