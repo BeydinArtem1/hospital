@@ -34,9 +34,6 @@ const RegistrationComponent = () => {
               login,
               password
             }).then(res => {
-              setLogin('');
-              setPassword('');
-              setRepeat('');
               history.push('/main');
             });
           } catch {
@@ -54,24 +51,27 @@ const RegistrationComponent = () => {
       <div className='input-conainer'>
         <p className='label'>Login:</p>
         <TextField
+          fullWidth
           id='outlined-basic'
           label='Login'
           variant='outlined'
-          type='text'          
+          type='text'
           onChange={(e) => setLogin(e.target.value)} />
         <p className='label'>Password:</p>
         <TextField
+          fullWidth
           id='outlined-basic'
           label='Password'
           variant='outlined'
-          type='password'          
+          type='password'
           onChange={(e) => setPassword(e.target.value)} />
         <p className='label'>Repeat password:</p>
         <TextField
+          fullWidth
           id='outlined-basic'
           label='Password'
           variant='outlined'
-          type='password'          
+          type='password'
           onChange={(e) => setRepeat(e.target.value)} />
       </div>
       <div className='sign-val'>
