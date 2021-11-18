@@ -1,12 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
 import TextField from '@mui/material/TextField';
 import './AuthorizationComponent.scss';
 
 const AuthorizationComponent = () => {
+  const history = useHistory();
+  const [snack, setSnack] = useState({ open: false, alert: '' });
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+
+  const validationLogin = () => {
+    const regLogin = /^[A-Za-z0-9]{6,}$/;
+    const flag = regLogin.test(login);
+    return flag;
+  }
+
+  const validationPass = () => {
+    const regPass = /^[A-Za-z0-9]{5,}\d{1,}$/;
+    const flag = regPass.test(password);
+    return flag;
+  }
+
+  const signIn = async () => {
+    if (validationLogin()) {
+      if (validationPass()) {
+        try {          
+          await axios.post('http://localhost:8000/authorize', {
+            login,
+            password
+          }).then(res => {
+            history.push('/main');
+          });
+        } catch {
+          setSnack({ open: true, alert: 'invalid login or password' });
+        }
+      } else setSnack({ open: true, alert: 'invalid password' });
+    } else setSnack({ open: true, alert: 'invalid login' });
+  }
+
+  const { open, alert } = snack;
   return (
-    <div className='container'>
+    <div className='container'> 
       <h1>Войти в систему</h1>
       <div className='input-conainer'>
         <p className="label">Login:</p>
@@ -15,17 +52,20 @@ const AuthorizationComponent = () => {
           label='Login'
           variant='outlined'
           type='text'
+          onChange={(e) => setLogin(e.target.value)}
         />
         <p className="label">Password:</p>
         <TextField
           id='outlined-basic'
           label='Password'
           variant='outlined'
-          type='password'
+          // type='password'
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className='sign-val'>
         <Button
+          onClick={() => signIn()}
           variant='outlined'
         >
           Войти
@@ -37,6 +77,12 @@ const AuthorizationComponent = () => {
           Зарегистрироваться
         </Link>
       </div>
+      <Snackbar
+        onClose={() => setSnack({ open: false })}
+        open={open}
+        autoHideDuration={1500}
+        message={alert}
+      />
     </div>
   );
 }
