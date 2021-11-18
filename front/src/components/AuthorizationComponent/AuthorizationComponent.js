@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import TextField from '@mui/material/TextField';
+import {Button, Snackbar, TextField} from '@mui/material';
 import './AuthorizationComponent.scss';
 
 const AuthorizationComponent = () => {
+  const [id, setId] = useState('');
   const history = useHistory();
   const [snack, setSnack] = useState({ open: false, alert: '' });
   const [login, setLogin] = useState('');
@@ -31,7 +30,8 @@ const AuthorizationComponent = () => {
           await axios.post('http://localhost:8000/authorize', {
             login,
             password
-          }).then(res => {
+          }).then(res => {            
+            setId(res.data);
             history.push('/main');
           });
         } catch {
