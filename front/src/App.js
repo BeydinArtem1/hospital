@@ -29,7 +29,7 @@ const App = () => {
         <Registration />
         </div>
       </Route>
-      <Route paht='/main'>
+      <Route path='/main'>
         <Header header='Приемы' />
       </Route>
       <Redirect from='/' to='/signin' />
