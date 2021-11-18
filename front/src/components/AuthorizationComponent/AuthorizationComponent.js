@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import {Button, Snackbar, TextField} from '@mui/material';
+import { Button, Snackbar, TextField } from '@mui/material';
 import './AuthorizationComponent.scss';
 
 const AuthorizationComponent = () => {
@@ -30,7 +30,7 @@ const AuthorizationComponent = () => {
           await axios.post('http://localhost:8000/authorize', {
             login,
             password
-          }).then(res => {            
+          }).then(res => {
             setId(res.data);
             history.push('/main');
           });
