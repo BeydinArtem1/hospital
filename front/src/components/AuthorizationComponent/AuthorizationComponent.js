@@ -27,7 +27,7 @@ const AuthorizationComponent = () => {
   const signIn = async () => {
     if (validationLogin()) {
       if (validationPass()) {
-        try {          
+        try {
           await axios.post('http://localhost:8000/authorize', {
             login,
             password
@@ -43,7 +43,7 @@ const AuthorizationComponent = () => {
 
   const { open, alert } = snack;
   return (
-    <div className='container'> 
+    <div className='container'>
       <h1>Войти в систему</h1>
       <div className='input-conainer'>
         <p className="label">Login:</p>
@@ -59,7 +59,7 @@ const AuthorizationComponent = () => {
           id='outlined-basic'
           label='Password'
           variant='outlined'
-          // type='password'
+          type='password'
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
