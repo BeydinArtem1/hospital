@@ -48,15 +48,15 @@ const AuthorizationComponent = () => {
       <div className='input-conainer'>
         <p className="label">Login:</p>
         <TextField
-          id='outlined-basic'
+          fullWidth
           label='Login'
           variant='outlined'
           type='text'
           onChange={(e) => setLogin(e.target.value)}
-        />
+        />  
         <p className="label">Password:</p>
         <TextField
-          id='outlined-basic'
+          fullWidth
           label='Password'
           variant='outlined'
           type='password'
