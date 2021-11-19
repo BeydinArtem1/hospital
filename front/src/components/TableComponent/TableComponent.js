@@ -1,10 +1,19 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
 const TableComponent = ({ tasks }) => {
+  const values = ['Врач', 'Дата', 'Жалобы', '']
   return (
     <div className='table-container'>
       <TableContainer component={Paper}>
@@ -12,10 +21,9 @@ const TableComponent = ({ tasks }) => {
           <TableHead>
             <TableRow>
               <TableCell>Имя</TableCell>
-              <TableCell align="center">Врач</TableCell>
-              <TableCell align="center">Дата</TableCell>
-              <TableCell align="center">Жалобы</TableCell>
-              <TableCell align="center"></TableCell>
+              {
+                values.map(value => <TableCell align="center">{value}</TableCell>)
+              }              
             </TableRow>
           </TableHead>
           <TableBody>

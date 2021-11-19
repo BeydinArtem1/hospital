@@ -41,6 +41,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
     }).then(res => {
       tasks.push(res.data.data);
       setTask([...tasks]);
+      setInput({ name: '', date: '', cause: '' });
     });
   }
 
@@ -52,6 +53,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
           label='Имя'
           variant='outlined'
           type='text'
+          value={name}
           onChange={(e) => setInput({ ...inputs, name: e.target.value })}
         />
       </div>
@@ -81,7 +83,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
         <TextField
           id='date'
           type='date'
-          defaultValue=''
+          defaultValue={date}
           onChange={(e) => setInput({ ...inputs, date: e.target.value })}
           sx={{ width: 220 }}
           InputLabelProps={{
@@ -92,6 +94,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
       <div>
         <p>Жалобы:</p>
         <TextField
+          value={cause}
           label='Жалобы'
           variant='outlined'
           type='text'
