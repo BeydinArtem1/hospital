@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import {
-  Box,
-  Typography,
-  Modal,
-  Button
+  Button,
+  Dialog,  
+  List,
+  ListItem,
+  ListItemText
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './ModalDeleteComponent.scss';
@@ -18,29 +19,24 @@ const ModalDeleteComponent = ({ open, setOpen, id, setTask }) => {
 
   return (
     <div>
-      <Modal
-        open={open}
+      <Dialog
         onClose={() => setOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box className='modal-box'>
-          <Typography
+        open={open}>
+        <List
+          className='modal-box'
+          sx={{ pt: 0 }}>
+          <ListItem
             className='modal-header'
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
           >
-            Удалить прием
-          </Typography>
-          <Typography
+            <h1>
+              Удалить прием
+            </h1>
+          </ListItem>
+          <ListItemText
             className='modal-body'
-            id="modal-modal-description"
-            sx={{ mt: 2 }}
-          >
-            Вы действительно хотите удалить прием?
-          </Typography>
-          <div className='modal-button'>
+            primary='Вы действительно хотите удалить прием?'
+          />
+          <ListItem className='modal-button' >
             <Button
               className='cansel'
               variant="outlined"
@@ -54,7 +50,7 @@ const ModalDeleteComponent = ({ open, setOpen, id, setTask }) => {
               onClick={() => {
                 deleteTask();
                 setOpen(false);
-              }
+                }
               }
               startIcon={
                 <DeleteIcon />
@@ -62,9 +58,9 @@ const ModalDeleteComponent = ({ open, setOpen, id, setTask }) => {
             >
               Delete
             </Button>
-          </div>
-        </Box>
-      </Modal>
+          </ListItem>
+        </List>
+      </Dialog>      
     </div>
   )
 }

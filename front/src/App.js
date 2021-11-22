@@ -17,7 +17,7 @@ import logo from './source/firstLogo.svg';
 import './App.scss';
 
 const App = () => {
-  const [id, setId] = useState('')
+  const [id, setId] = useState('');
   const [tasks, setTask] = useState([]);
   const history = useHistory();
   const [open, setOpen] = useState(false);
