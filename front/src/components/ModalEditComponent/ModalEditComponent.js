@@ -11,8 +11,7 @@ import {
 import './ModalEditComponent.scss';
 
 const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
-  const { name, date, cause, _id } = task;
-  console.log(task);
+  const { name, date, cause, _id } = task;  
   const [nameVal, setName] = useState(name);
   const [causeVal, setCause] = useState(cause);
   const [dateVal, setDate] = useState(date);
