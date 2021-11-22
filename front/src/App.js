@@ -11,13 +11,16 @@ import Header from './components/HeaderComponent/HeaderComponent';
 import MainInput from './components/MainInputComponent/MainInputComponent';
 import Authorization from './components/AuthorizationComponent/AuthorizationComponent';
 import Registration from './components/RegistrationComponent/RegistrationComponent';
-import Table from './components/TableComponent/TableComponent'
+import Table from './components/TableComponent/TableComponent';
+import ModalDelete from './components/ModalDeleteComponent/ModalDeleteComponent';
 import logo from './source/firstLogo.svg';
 import './App.scss';
 
 const App = () => {
+  const [id, setId] = useState('')
   const [tasks, setTask] = useState([]);
   const history = useHistory();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:8000/allTasks').then(res => {
@@ -60,7 +63,17 @@ const App = () => {
           tasks={tasks}
           setTask={setTask}
         />
-        <Table tasks={tasks} />
+        <Table
+          tasks={tasks}
+          setOpen={setOpen}
+          setId={setId}
+        />
+        <ModalDelete
+          open={open}
+          setOpen={setOpen}
+          id={id}
+          setTask={setTask}
+        />
       </Route>
       <Redirect from='/' to='/signin' />
     </Switch>
