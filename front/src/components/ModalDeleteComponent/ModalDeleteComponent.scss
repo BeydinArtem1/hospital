@@ -1,0 +1,59 @@
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: 400px;
+  background-color: white ;
+  border: 2px solid #000;
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    font-size: 2.4em;      
+    margin: 5px;
+    border-bottom: solid rgba(0, 0, 0, 0.301);
+  }
+
+  .modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    height: 30%;      
+    border-bottom: solid rgba(0, 0, 0, 0.301);
+  }
+
+  .modal-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 30%;
+
+    .cansel {
+      border: 1.3px solid rgba(11, 181, 211, 0.678);
+      color: rgba(15, 99, 114, 0.712); 
+    }
+
+    .delete {
+      border: 1.3px solid rgba(245, 10, 69, 0.678);
+      color: rgba(196, 4, 52, 0.678);
+    }
+
+    button {      
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      border-radius: 4px;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.8);      
+      text-transform: capitalize;
+      margin-bottom: 7px;
+      min-width: 140px;
+      min-height: 50px;
+    }   
+  }    
+}

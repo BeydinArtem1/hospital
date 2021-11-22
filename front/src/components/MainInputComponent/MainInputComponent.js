@@ -49,8 +49,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
     <div className='values-container'>
       <div>
         <p>Имя:</p>
-        <TextField
-          label='Имя'
+        <TextField          
           variant='outlined'
           type='text'
           value={name}
@@ -73,9 +72,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
             setDoc(newInputValue);
           }}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params}
-            label='Врач'
-          />}
+          renderInput={(params) => <TextField {...params} />}
         />
       </div>
       <div>
@@ -94,8 +91,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
       <div>
         <p>Жалобы:</p>
         <TextField
-          value={cause}
-          label='Жалобы'
+          value={cause}          
           variant='outlined'
           type='text'
           onChange={(e) => setInput({ ...inputs, cause: e.target.value })}

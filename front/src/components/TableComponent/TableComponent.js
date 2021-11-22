@@ -13,7 +13,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
 const TableComponent = ({ tasks, setOpen, setId }) => {
-  const values = ['Врач', 'Дата', 'Жалобы', '']
+  const values = ['Врач', 'Дата', 'Жалобы', ''];
   return (
     <div className='table-container'>
       <TableContainer component={Paper}>
@@ -22,8 +22,14 @@ const TableComponent = ({ tasks, setOpen, setId }) => {
             <TableRow>
               <TableCell>Имя</TableCell>
               {
-                values.map(value => <TableCell align="center">{value}</TableCell>)
-              }              
+                values.map(value => <TableCell
+                  key={`столбец-${value}`}
+                  align="center"
+                >
+                  {value}
+                </TableCell>
+                )
+              }
             </TableRow>
           </TableHead>
           <TableBody>
@@ -39,8 +45,9 @@ const TableComponent = ({ tasks, setOpen, setId }) => {
                   <EditIcon />
                   <DeleteForeverIcon onClick={() => {
                     setId(row._id);
-                    setOpen(true)}                    
-                  } 
+                    setOpen(true)
+                  }
+                  }
                   />
                 </TableCell>
               </TableRow>
