@@ -12,8 +12,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
-const TableComponent = ({ tasks }) => {
-  const values = ['Врач', 'Дата', 'Жалобы', '']
+const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
+  const cells = ['Врач', 'Дата', 'Жалобы', ''];
+
   return (
     <div className='table-container'>
       <TableContainer component={Paper}>
@@ -22,8 +23,14 @@ const TableComponent = ({ tasks }) => {
             <TableRow>
               <TableCell>Имя</TableCell>
               {
-                values.map(value => <TableCell align="center">{value}</TableCell>)
-              }              
+                cells.map(value => <TableCell
+                  key={`столбец-${value}`}
+                  align="center"
+                >
+                  {value}
+                </TableCell>
+                )
+              }
             </TableRow>
           </TableHead>
           <TableBody>
@@ -31,18 +38,31 @@ const TableComponent = ({ tasks }) => {
               <TableRow
                 key={row.name}
               >
-                <TableCell component="th" scope="row">
+                <TableCell
+                  component="th"
+                  scope="row"
+                >
                   {row.name}
                 </TableCell>
                 <TableCell align="center">{row.doc}</TableCell>
                 <TableCell align="center">{row.date.split('-').reverse().join('.')}</TableCell>
                 <TableCell align="center">{row.cause}</TableCell>
                 <TableCell align="center">
-                  <EditIcon />
-                  <DeleteForeverIcon />
+                  <EditIcon onClick={() => {
+                      setEdit(true);
+                    }
+                  } 
+                  />
+                  <DeleteForeverIcon onClick={() => {
+                    setId(row._id);
+                    setOpen(true)
+                    }
+                  }
+                  />
                 </TableCell>
               </TableRow>
-            ))}
+             )
+            )}
           </TableBody>
         </Table>
       </TableContainer>
