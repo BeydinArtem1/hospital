@@ -42,6 +42,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
       tasks.push(res.data.data);
       setTask([...tasks]);
       setInput({ name: '', date: '', cause: '' });
+
     });
   }
 

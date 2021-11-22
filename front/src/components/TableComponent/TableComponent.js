@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
-const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
+const TableComponent = ({ tasks, setOpen, setId, setEdit, setTask1 }) => {
   const cells = ['Врач', 'Дата', 'Жалобы', ''];
 
   return (
@@ -23,8 +23,8 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
             <TableRow>
               <TableCell>Имя</TableCell>
               {
-                cells.map(value => <TableCell
-                  key={`столбец-${value}`}
+                cells.map((value, index) => <TableCell
+                  key={`столбец-${index}`}
                   align="center"
                 >
                   {value}
@@ -36,7 +36,7 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
           <TableBody>
             {tasks.map((row) => (
               <TableRow
-                key={row.name}
+                key={row._id}
               >
                 <TableCell
                   component="th"
@@ -49,6 +49,7 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
                 <TableCell align="center">{row.cause}</TableCell>
                 <TableCell align="center">
                   <EditIcon onClick={() => {
+                      setTask1(row);                      
                       setEdit(true);
                     }
                   } 

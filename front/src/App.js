@@ -18,6 +18,7 @@ import logo from './source/firstLogo.svg';
 import './App.scss';
 
 const App = () => {
+  const [task, setTask1] = useState({})
   const [id, setId] = useState('');
   const [tasks, setTask] = useState([]);
   const history = useHistory();
@@ -66,7 +67,8 @@ const App = () => {
           setTask={setTask}
         />
         <Table
-          tasks={tasks}          
+          tasks={tasks} 
+          setTask1={setTask1}         
           setEdit={setEdit}
           setOpen={setOpen}
           setId={setId}
@@ -77,12 +79,12 @@ const App = () => {
           id={id}
           setTask={setTask}
         />
-        <ModalEdit
-          id={id}
+        {editOpen && <ModalEdit
+          task={task}
           editOpen={editOpen}
           setEdit={setEdit}
           setTask={setTask}
-        />
+        />}
       </Route>
       <Redirect from='/' to='/signin' />
     </Switch>
