@@ -13,6 +13,7 @@ import Authorization from './components/AuthorizationComponent/AuthorizationComp
 import Registration from './components/RegistrationComponent/RegistrationComponent';
 import Table from './components/TableComponent/TableComponent';
 import ModalDelete from './components/ModalDeleteComponent/ModalDeleteComponent';
+import ModalEdit from './components/ModalEditComponent/ModalEditComponent';
 import logo from './source/firstLogo.svg';
 import './App.scss';
 
@@ -20,6 +21,7 @@ const App = () => {
   const [id, setId] = useState('');
   const [tasks, setTask] = useState([]);
   const history = useHistory();
+  const [editOpen, setEdit] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -64,7 +66,8 @@ const App = () => {
           setTask={setTask}
         />
         <Table
-          tasks={tasks}
+          tasks={tasks}          
+          setEdit={setEdit}
           setOpen={setOpen}
           setId={setId}
         />
@@ -72,6 +75,12 @@ const App = () => {
           open={open}
           setOpen={setOpen}
           id={id}
+          setTask={setTask}
+        />
+        <ModalEdit
+          id={id}
+          editOpen={editOpen}
+          setEdit={setEdit}
           setTask={setTask}
         />
       </Route>

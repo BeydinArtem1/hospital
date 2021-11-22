@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
-const TableComponent = ({ tasks, setOpen, setId }) => {
+const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
   const cells = ['Врач', 'Дата', 'Жалобы', ''];
 
   return (
@@ -38,12 +38,21 @@ const TableComponent = ({ tasks, setOpen, setId }) => {
               <TableRow
                 key={row.name}
               >
-                <TableCell component="th" scope="row">{row.name}</TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                >
+                  {row.name}
+                </TableCell>
                 <TableCell align="center">{row.doc}</TableCell>
                 <TableCell align="center">{row.date.split('-').reverse().join('.')}</TableCell>
                 <TableCell align="center">{row.cause}</TableCell>
                 <TableCell align="center">
-                  <EditIcon />
+                  <EditIcon onClick={() => {
+                      setEdit(true);
+                    }
+                  } 
+                  />
                   <DeleteForeverIcon onClick={() => {
                     setId(row._id);
                     setOpen(true)
@@ -52,7 +61,7 @@ const TableComponent = ({ tasks, setOpen, setId }) => {
                   />
                 </TableCell>
               </TableRow>
-            )
+             )
             )}
           </TableBody>
         </Table>

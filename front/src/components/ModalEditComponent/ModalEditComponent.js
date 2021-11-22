@@ -1,59 +1,51 @@
 import React from 'react';
 import axios from 'axios';
 import {
-  Box,
-  Typography,
-  Modal,
-  Button
+  Button,
+  Dialog,
+  List,
+  ListItem  
 } from '@mui/material';
 
-const ModalEditComponent = () => {
-return ( <div>
-  <Modal
-    // open={open}
-    // onClose={() => setOpen(false)}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Box className='modal-box'>
-      <Typography
-        className='modal-header'
-        id="modal-modal-title"
-        variant="h6"
-        component="h2"
-      >
-        Изменить прием
-      </Typography>
-      <Typography
-        className='modal-body'
-        id="modal-modal-description"
-        sx={{ mt: 2 }}
-      >
-        
-      </Typography>
-      <div className='modal-button'>
-        <Button
-          className='cansel'
-          variant="outlined"
-          // onClick={() => setOpen(false)}
+const ModalEditComponent = ({ id, editOpen, setEdit, setTask }) => {
+  return (
+    <Dialog
+      onClose={() => setEdit(false)}
+      open={editOpen}>
+      <List
+        className='modal-box'
+        sx={{ pt: 0 }}>
+        <ListItem
+          className='modal-header'
         >
-          Cancel
-        </Button>
-        <Button
-          className='save'
-          variant="outlined"
-          onClick={() => {
-            
-            // setOpen(false);
-          }
-          }          
-        >
-          Delete
-        </Button>
-      </div>
-    </Box>
-  </Modal>
-</div>)
+          <h1>
+            Изменить прием
+          </h1>
+        </ListItem>
+        <ListItem>
+
+        </ListItem>       
+        <ListItem className='modal-button' >
+          <Button
+            className='cansel'
+            variant="outlined"
+            onClick={() => setEdit(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            className='save'
+            variant="outlined"
+            onClick={() => {              
+              setEdit(false);
+              }
+            }            
+          >
+            Save
+          </Button>
+        </ListItem>
+      </List>
+    </Dialog>)
 }
 
 export default ModalEditComponent
