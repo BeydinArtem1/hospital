@@ -4,8 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button, Snackbar, TextField } from '@mui/material';
 import './AuthorizationComponent.scss';
 
-const AuthorizationComponent = () => {
-  const [id, setId] = useState('');
+const AuthorizationComponent = () => {  
   const history = useHistory();
   const [snack, setSnack] = useState({ open: false, alert: '' });
   const [login, setLogin] = useState('');
@@ -31,7 +30,7 @@ const AuthorizationComponent = () => {
             login,
             password
           }).then(res => {
-            setId(res.data);
+            localStorage.setItem('token', res.data);
             history.push('/main');
           });
         } catch {

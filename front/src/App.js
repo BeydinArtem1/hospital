@@ -1,36 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Switch,
   Route,
-  Redirect,
-  useHistory
+  Redirect
 } from 'react-router-dom';
-import axios from 'axios';
-import { Button } from '@mui/material';
 import Header from './components/HeaderComponent/HeaderComponent';
-import MainInput from './components/MainInputComponent/MainInputComponent';
+import MainComponent from './components/MainComponent/MainComponent';
 import Authorization from './components/AuthorizationComponent/AuthorizationComponent';
 import Registration from './components/RegistrationComponent/RegistrationComponent';
-import Table from './components/TableComponent/TableComponent';
-import ModalDelete from './components/ModalDeleteComponent/ModalDeleteComponent';
-import ModalEdit from './components/ModalEditComponent/ModalEditComponent';
 import logo from './source/firstLogo.svg';
 import './App.scss';
 
 const App = () => {
-  const [row, setRow] = useState({})
-  const [id, setId] = useState('');
-  const [tasks, setTask] = useState([]);
-  const history = useHistory();
-  const [editOpen, setEdit] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/allTasks').then(res => {
-      setTask(res.data.data);
-    });
-  }, []);
-
   return (
     <Switch>
       <Route path='/signin'>
@@ -54,37 +35,7 @@ const App = () => {
         </div>
       </Route>
       <Route path='/main'>
-        <Header header='Приемы'>
-          <Button
-            variant='outlined'
-            onClick={() => history.push('/')}
-          >
-            Выход
-          </Button>
-        </Header>
-        <MainInput
-          tasks={tasks}
-          setTask={setTask}
-        />
-        <Table
-          tasks={tasks} 
-          setRow={setRow}         
-          setEdit={setEdit}
-          setOpen={setOpen}
-          setId={setId}
-        />
-        <ModalDelete
-          open={open}
-          setOpen={setOpen}
-          id={id}
-          setTask={setTask}
-        />
-        {editOpen && <ModalEdit
-          row={row}
-          editOpen={editOpen}
-          setEdit={setEdit}
-          setTask={setTask}
-        />}
+        <MainComponent />
       </Route>
       <Redirect from='/' to='/signin' />
     </Switch>
