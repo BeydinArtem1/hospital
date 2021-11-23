@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import './ModalEditComponent.scss';
 
-const ModalEditComponent = ({ editOpen, setEdit, row, setTask }) => {
+const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment }) => {
   const { name, date, cause, _id } = row;
   const [inputs, setInputs] = useState({ inputName: name, inputDate: date, inputCause: cause });
   const { inputName, inputDate, inputCause } = inputs;
@@ -39,19 +39,19 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setTask }) => {
   const [value, setValue] = useState(doctor[0]);
 
   const handleClick = () => {
-    saveTask();
+    saveAppointment();
     setEdit(false);
   }
 
-  const saveTask = async () => {
-    await axios.patch('http://localhost:8000/updateTask', {
+  const saveAppointment = async () => {
+    await axios.patch('http://localhost:8000/updateAppointment', {
       _id,
       name: inputName,
       doc,
       date: inputDate,
       cause: inputCause
     }).then(res => {
-      setTask(res.data.data);
+      setAppointment(res.data.data);
     });
   }
 

@@ -13,25 +13,25 @@ import ModalEdit from '../ModalEditComponent/ModalEditComponent';
 const MainComponent = () => {
   const [row, setRow] = useState({})
   const [id, setId] = useState('');
-  const [tasks, setTask] = useState([]);
+  const [appointments, setAppointment] = useState([]);
   const [editOpen, setEdit] = useState(false);
   const [open, setOpen] = useState(false);
 
   const history = useHistory();
 
   useEffect(() => {
-    axios.get('http://localhost:8000/allTasks', {
+    axios.get('http://localhost:8000/allAppointments', {
       headers: {
         token: localStorage.getItem('token')
       }
     }).then(res => {
-      setTask(res.data.data);
+      setAppointment(res.data.data);
     });
   }, []);
 
   const handleLogout = () => {
     history.push('/');
-    setTask([]);
+    setAppointment([]);
     localStorage.removeItem('token');
   }
 
@@ -46,11 +46,11 @@ const MainComponent = () => {
         </Button>
       </Header>
       <MainInput
-        tasks={tasks}
-        setTask={setTask}
+        appointments={appointments}
+        setAppointment={setAppointment}
       />
       <Table
-        tasks={tasks}
+        appointments={appointments}
         setRow={setRow}
         setEdit={setEdit}
         setOpen={setOpen}
@@ -60,13 +60,13 @@ const MainComponent = () => {
         open={open}
         setOpen={setOpen}
         id={id}
-        setTask={setTask}
+        setAppointment={setAppointment}
       />
       {editOpen && <ModalEdit
         row={row}
         editOpen={editOpen}
         setEdit={setEdit}
-        setTask={setTask}
+        setAppointment={setAppointment}
       />}
     </div>
   );
