@@ -18,7 +18,7 @@ import logo from './source/firstLogo.svg';
 import './App.scss';
 
 const App = () => {
-  const [task, setTask1] = useState({})
+  const [row, setRow] = useState({})
   const [id, setId] = useState('');
   const [tasks, setTask] = useState([]);
   const history = useHistory();
@@ -68,7 +68,7 @@ const App = () => {
         />
         <Table
           tasks={tasks} 
-          setTask1={setTask1}         
+          setRow={setRow}         
           setEdit={setEdit}
           setOpen={setOpen}
           setId={setId}
@@ -80,7 +80,7 @@ const App = () => {
           setTask={setTask}
         />
         {editOpen && <ModalEdit
-          task={task}
+          row={row}
           editOpen={editOpen}
           setEdit={setEdit}
           setTask={setTask}

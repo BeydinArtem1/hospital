@@ -12,8 +12,18 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
-const TableComponent = ({ tasks, setOpen, setId, setEdit, setTask1 }) => {
+const TableComponent = ({ tasks, setOpen, setId, setEdit, setRow }) => {
   const cells = ['Врач', 'Дата', 'Жалобы', ''];
+
+  const handleEditButtonClick = (row) => {
+    setRow(row);
+    setEdit(true);
+  }
+
+  const handleDelete = (id) => {
+    setId(id);
+    setOpen(true)
+  }
 
   return (
     <div className='table-container'>
@@ -24,7 +34,7 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit, setTask1 }) => {
               <TableCell>Имя</TableCell>
               {
                 cells.map((value, index) => <TableCell
-                  key={`столбец-${index}`}
+                  key={`row-${index}`}
                   align="center"
                 >
                   {value}
@@ -48,21 +58,11 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit, setTask1 }) => {
                 <TableCell align="center">{row.date.split('-').reverse().join('.')}</TableCell>
                 <TableCell align="center">{row.cause}</TableCell>
                 <TableCell align="center">
-                  <EditIcon onClick={() => {
-                      setTask1(row);                      
-                      setEdit(true);
-                    }
-                  } 
-                  />
-                  <DeleteForeverIcon onClick={() => {
-                    setId(row._id);
-                    setOpen(true)
-                    }
-                  }
-                  />
+                  <EditIcon onClick={() => handleEditButtonClick(row)} />
+                  <DeleteForeverIcon onClick={() => handleDelete(row._id)} />
                 </TableCell>
               </TableRow>
-             )
+            )
             )}
           </TableBody>
         </Table>

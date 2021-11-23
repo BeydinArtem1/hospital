@@ -42,7 +42,6 @@ const MainInputComponent = ({ tasks, setTask }) => {
       tasks.push(res.data.data);
       setTask([...tasks]);
       setInput({ name: '', date: '', cause: '' });
-
     });
   }
 
@@ -50,7 +49,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
     <div className='values-container'>
       <div>
         <p>Имя:</p>
-        <TextField          
+        <TextField
           variant='outlined'
           type='text'
           value={name}
@@ -92,7 +91,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
       <div>
         <p>Жалобы:</p>
         <TextField
-          value={cause}          
+          value={cause}
           variant='outlined'
           type='text'
           onChange={(e) => setInput({ ...inputs, cause: e.target.value })}

@@ -10,11 +10,10 @@ import {
 } from '@mui/material';
 import './ModalEditComponent.scss';
 
-const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
-  const { name, date, cause, _id } = task;  
-  const [nameVal, setName] = useState(name);
-  const [causeVal, setCause] = useState(cause);
-  const [dateVal, setDate] = useState(date);
+const ModalEditComponent = ({ editOpen, setEdit, row, setTask }) => {
+  const { name, date, cause, _id } = row;
+  const [inputs, setInputs] = useState({ inputName: name, inputDate: date, inputCause: cause });
+  const { inputName, inputDate, inputCause } = inputs;
   const [doc, setDoc] = useState('');
   const doctor = [
     {
@@ -39,14 +38,18 @@ const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
 
   const [value, setValue] = useState(doctor[0]);
 
+  const handleClick = () => {
+    saveTask();
+    setEdit(false);
+  }
 
   const saveTask = async () => {
     await axios.patch('http://localhost:8000/updateTask', {
       _id,
-      name: nameVal,
+      name: inputName,
       doc,
-      date: dateVal,
-      cause: causeVal
+      date: inputDate,
+      cause: inputCause
     }).then(res => {
       setTask(res.data.data);
     });
@@ -58,8 +61,7 @@ const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
       onClose={() => setEdit(false)}
       open={editOpen}>
       <List
-        className='modal-edit'
-        sx={{ pt: 0 }}>
+        className='modal-edit'>
         <ListItem
           className='modal-header'
         >
@@ -74,11 +76,8 @@ const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
               fullWidth
               variant='outlined'
               type='text'
-              value={nameVal}
-              onChange={(e) => {
-                setName(e.target.value);
-                }
-              }
+              value={inputName}
+              onChange={(e) => setInputs({ ...inputs, inputName: e.target.value })}
             />
           </div>
           <div className='edit-input-container'>
@@ -89,17 +88,10 @@ const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
               disablePortal
               id="controllable-states-demo"
               value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-                }
-              }
+              onChange={(event, newValue) => setValue(newValue)}
               options={doctor}
               inputValue={doc}
-              onInputChange={(event, newInputValue) => {
-                setDoc(newInputValue);
-                }
-              }
-              sx={{ width: 300 }}
+              onInputChange={(event, newInputValue) => setDoc(newInputValue)}              
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
@@ -110,26 +102,19 @@ const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
               className='date-input'
               id='date'
               type='date'
-              defaultValue={date}
-              onChange={(e) => setDate(e.target.value)}
-              sx={{ width: 220 }}
-              InputLabelProps={{
-                shrink: true,
-                }
-              }
+              defaultValue={inputDate}
+              onChange={(e) => setInputs({ ...inputs, inputDate: e.target.value })}              
+              InputLabelProps={{ shrink: true, }}
             />
           </div>
           <div className='edit-input-container'>
             <p>Жалобы:</p>
             <TextField
               fullWidth
-              value={causeVal}
+              value={inputCause}
               variant='outlined'
               type='text'
-              onChange={(e) => {
-                setCause(e.target.value);
-                }
-              }
+              onChange={(e) => setInputs({ ...inputs, inputCause: e.target.value })}
             />
           </div>
         </ListItem>
@@ -144,11 +129,7 @@ const ModalEditComponent = ({ editOpen, setEdit, task, setTask }) => {
           <Button
             className='save'
             variant="outlined"
-            onClick={() => {
-              saveTask();
-              setEdit(false);
-              }
-            }
+            onClick={() => handleClick()}
           >
             Save
           </Button>
