@@ -38,6 +38,10 @@ const MainInputComponent = ({ tasks, setTask }) => {
       doc,
       date,
       cause
+    }, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
     }).then(res => {
       tasks.push(res.data.data);
       setTask([...tasks]);
