@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import './MainInputComponent.scss';
 
-const MainInputComponent = ({ tasks, setTask }) => {
+const MainInputComponent = ({ appointments, setAppointment }) => {
   const doctor = [
     {
       label: 'Иванов Иван Иванович'
@@ -32,8 +32,8 @@ const MainInputComponent = ({ tasks, setTask }) => {
   const [doc, setDoc] = useState('');
   const { name, date, cause } = inputs;
 
-  const saveTask = async () => {
-    await axios.post('http://localhost:8000/saveTask', {
+  const saveAppointment = async () => {
+    await axios.post('http://localhost:8000/saveAppointment', {
       name,
       doc,
       date,
@@ -43,8 +43,8 @@ const MainInputComponent = ({ tasks, setTask }) => {
         token: localStorage.getItem('token')
       }
     }).then(res => {
-      tasks.push(res.data.data);
-      setTask([...tasks]);
+      appointments.push(res.data.data);
+      setAppointment([...appointments]);
       setInput({ name: '', date: '', cause: '' });
     });
   }
@@ -105,7 +105,7 @@ const MainInputComponent = ({ tasks, setTask }) => {
         className='add-button'
         variant='outlined'
         disabled={(name && doc && date && cause) ? false : true}
-        onClick={() => saveTask()}
+        onClick={() => saveAppointment()}
       >
         Добавить
       </Button>

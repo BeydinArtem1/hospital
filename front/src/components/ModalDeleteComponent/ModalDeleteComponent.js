@@ -10,15 +10,15 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import './ModalDeleteComponent.scss';
 
-const ModalDeleteComponent = ({ open, setOpen, id, setTask }) => {
-  const deleteTask = async () => {
-    await axios.delete(`http://localhost:8000/deleteTask?_id=${id}`).then(res => {
-      setTask(res.data.data);
+const ModalDeleteComponent = ({ open, setOpen, id, setAppointment }) => {
+  const deleteAppointment = async () => {
+    await axios.delete(`http://localhost:8000/deleteAppointment?_id=${id}`).then(res => {
+      setAppointment(res.data.data);
     });
   }
 
   const handleDelete = () => {
-    deleteTask();
+    deleteAppointment();
     setOpen(false);
   }
 
