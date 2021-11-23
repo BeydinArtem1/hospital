@@ -1,0 +1,79 @@
+.main-edit-container {
+  width: 100%;
+  height: 100%;
+
+  .MuiPaper-root {
+    max-width: none;
+    width: 80%;
+    height: 75%;
+  }
+
+  .modal-edit {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;   
+    height: 90%; 
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;      
+  
+      .cansel {
+        border: 1.3px solid rgba(11, 181, 211, 0.678);
+        color: rgba(15, 99, 114, 0.712); 
+      }
+  
+      .save {
+        border: 1.3px solid rgba(48, 131, 0, 0.836);
+        color: rgba(25, 129, 30, 0.678);
+      }
+  
+      button {      
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        border-radius: 4px;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.8);      
+        text-transform: capitalize;
+        margin-bottom: 7px;
+        min-width: 140px;
+        min-height: 50px;
+      }   
+    }    
+  
+    .input-edit {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 80%;
+      
+      .edit-input-container {
+        width: 100%;
+
+        .autocomplete-input {
+          width: 100%;
+        }
+
+        .date-input {
+          width: 100%;
+        }
+
+        input {
+        height: 20px;
+        width: 100%;
+        }
+      }
+      
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {
   Button,
-  Dialog,  
+  Dialog,
   List,
   ListItem,
   ListItemText
@@ -15,6 +15,11 @@ const ModalDeleteComponent = ({ open, setOpen, id, setTask }) => {
     await axios.delete(`http://localhost:8000/deleteTask?_id=${id}`).then(res => {
       setTask(res.data.data);
     });
+  }
+
+  const handleDelete = () => {
+    deleteTask();
+    setOpen(false);
   }
 
   return (
@@ -47,11 +52,7 @@ const ModalDeleteComponent = ({ open, setOpen, id, setTask }) => {
             <Button
               className='delete'
               variant="outlined"
-              onClick={() => {
-                deleteTask();
-                setOpen(false);
-                }
-              }
+              onClick={() => handleDelete()}
               startIcon={
                 <DeleteIcon />
               }
@@ -60,7 +61,7 @@ const ModalDeleteComponent = ({ open, setOpen, id, setTask }) => {
             </Button>
           </ListItem>
         </List>
-      </Dialog>      
+      </Dialog>
     </div>
   )
 }

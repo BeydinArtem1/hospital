@@ -12,8 +12,18 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
-const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
+const TableComponent = ({ tasks, setOpen, setId, setEdit, setRow }) => {
   const cells = ['Врач', 'Дата', 'Жалобы', ''];
+
+  const handleEditButtonClick = (row) => {
+    setRow(row);
+    setEdit(true);
+  }
+
+  const handleDelete = (id) => {
+    setId(id);
+    setOpen(true)
+  }
 
   return (
     <div className='table-container'>
@@ -23,8 +33,8 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
             <TableRow>
               <TableCell>Имя</TableCell>
               {
-                cells.map(value => <TableCell
-                  key={`столбец-${value}`}
+                cells.map((value, index) => <TableCell
+                  key={`row-${index}`}
                   align="center"
                 >
                   {value}
@@ -36,7 +46,7 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
           <TableBody>
             {tasks.map((row) => (
               <TableRow
-                key={row.name}
+                key={row._id}
               >
                 <TableCell
                   component="th"
@@ -48,20 +58,11 @@ const TableComponent = ({ tasks, setOpen, setId, setEdit }) => {
                 <TableCell align="center">{row.date.split('-').reverse().join('.')}</TableCell>
                 <TableCell align="center">{row.cause}</TableCell>
                 <TableCell align="center">
-                  <EditIcon onClick={() => {
-                      setEdit(true);
-                    }
-                  } 
-                  />
-                  <DeleteForeverIcon onClick={() => {
-                    setId(row._id);
-                    setOpen(true)
-                    }
-                  }
-                  />
+                  <EditIcon onClick={() => handleEditButtonClick(row)} />
+                  <DeleteForeverIcon onClick={() => handleDelete(row._id)} />
                 </TableCell>
               </TableRow>
-             )
+            )
             )}
           </TableBody>
         </Table>
