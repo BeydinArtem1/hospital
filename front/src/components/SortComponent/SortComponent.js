@@ -12,8 +12,7 @@ const SortComponent = ({ appointments, setAppointment }) => {
   const direction = ['ascending', 'descending'];
   const selectors = ['name', 'doc', 'date', 'none'];
 
-  const sortAppointment = (field, dir) => {
-    console.log(appointments)
+  const sortAppointment = (field, dir) => {    
     if (field === 'none') field = '_id';
     appointments.sort((a, b) => a[field] > b[field] ? 1 : a[field] < b[field] ? -1 : 0);
     if (dir === 'descending') appointments.reverse();
