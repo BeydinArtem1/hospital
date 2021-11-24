@@ -50,6 +50,10 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment }) => {
       doc,
       date: inputDate,
       cause: inputCause
+    }, {
+      headers: {
+        token: localStorage.getItem('token')
+      }
     }).then(res => {
       setAppointment(res.data.data);
     });
@@ -91,7 +95,7 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment }) => {
               onChange={(event, newValue) => setValue(newValue)}
               options={doctor}
               inputValue={doc}
-              onInputChange={(event, newInputValue) => setDoc(newInputValue)}              
+              onInputChange={(event, newInputValue) => setDoc(newInputValue)}
               renderInput={(params) => <TextField {...params} />}
             />
           </div>
@@ -103,7 +107,7 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment }) => {
               id='date'
               type='date'
               defaultValue={inputDate}
-              onChange={(e) => setInputs({ ...inputs, inputDate: e.target.value })}              
+              onChange={(e) => setInputs({ ...inputs, inputDate: e.target.value })}
               InputLabelProps={{ shrink: true, }}
             />
           </div>

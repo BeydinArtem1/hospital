@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 import Header from '../HeaderComponent/HeaderComponent';
 import MainInput from '../MainInputComponent/MainInputComponent';
+import Sort from '../SortComponent/SortComponent';
 import Table from '../TableComponent/TableComponent';
 import ModalDelete from '../ModalDeleteComponent/ModalDeleteComponent';
 import ModalEdit from '../ModalEditComponent/ModalEditComponent';
@@ -46,6 +47,10 @@ const MainComponent = () => {
         </Button>
       </Header>
       <MainInput
+        appointments={appointments}
+        setAppointment={setAppointment}
+      />
+      <Sort
         appointments={appointments}
         setAppointment={setAppointment}
       />
