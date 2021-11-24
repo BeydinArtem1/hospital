@@ -1,0 +1,53 @@
+.sort-direction {
+  display: flex;
+  flex-direction: column;    
+  width: 15%;
+  margin-right: 5%;
+
+  p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  .vector {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    border-radius: 4px;  
+    font-size: 18px;
+    padding: 0%;
+  }
+}
+
+
+.sort-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+
+  .sort-by {
+    display: flex;
+    flex-direction: column;    
+    width: 15%;
+    margin-right: 5%;
+
+    p {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 20px;
+    }
+
+    .sort-form {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      border-radius: 4px;  
+      font-size: 18px;
+      padding: 0%;
+    }
+  }
+}
