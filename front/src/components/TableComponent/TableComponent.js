@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './TableComponent.scss';
 
-const TableComponent = ({ appointments, setOpen, setId, setEdit, setRow }) => {
+const TableComponent = ({ filter, setOpen, setId, setEdit, setRow }) => {
   const cells = ['Врач', 'Дата', 'Жалобы', ''];
 
   const handleEditButtonClick = (row) => {
@@ -44,7 +44,7 @@ const TableComponent = ({ appointments, setOpen, setId, setEdit, setRow }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {appointments.map((row) => (
+            {filter.map((row) => (
               <TableRow
                 key={row._id}
               >
