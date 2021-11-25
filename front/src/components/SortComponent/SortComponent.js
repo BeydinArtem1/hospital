@@ -110,13 +110,13 @@ const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
           </FormControl>
         </div>
       }
-      { !filterButton && <div className='filter-button'>
-       <p>Добавить фильтр по дате:</p>
-        <AddBoxIcon 
-        className='add-icon'
-        onClick={() => setButton(true)}
+      {!filterButton && <div className='filter-button'>
+        <p>Добавить фильтр по дате:</p>
+        <AddBoxIcon
+          className='add-icon'
+          onClick={() => setButton(true)}
         />
-     </div>}
+      </div>}
     </div>
   )
 }

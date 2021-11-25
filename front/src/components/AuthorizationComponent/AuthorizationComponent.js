@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Snackbar, TextField } from '@mui/material';
+import {
+  Button,
+  Snackbar,
+  TextField
+} from '@mui/material';
 import './AuthorizationComponent.scss';
 
-const AuthorizationComponent = () => {  
+const AuthorizationComponent = () => {
   const history = useHistory();
   const [snack, setSnack] = useState({ open: false, alert: '' });
   const [login, setLogin] = useState('');
@@ -52,7 +56,7 @@ const AuthorizationComponent = () => {
           variant='outlined'
           type='text'
           onChange={(e) => setLogin(e.target.value)}
-        />  
+        />
         <p className="label">Password:</p>
         <TextField
           fullWidth

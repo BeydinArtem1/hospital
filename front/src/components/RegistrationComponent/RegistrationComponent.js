@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import Snackbar from '@mui/material/Snackbar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import {
+  Snackbar,
+  Button,
+  TextField
+} from '@mui/material';
 import './RegistrationComponent.scss';
 
 const RegistrationComponent = () => {

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import {
+  Button,
+  TextField,
+  Autocomplete
+}from '@mui/material';
 import './MainInputComponent.scss';
 
 const MainInputComponent = ({ appointments, setAppointment }) => {

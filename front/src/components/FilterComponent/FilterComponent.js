@@ -7,20 +7,12 @@ const FilterComponent = ({ setButton, appointments, setFilter }) => {
   const [since, setSience] = useState('');
   const [by, setBy] = useState('');
 
-  const filterDate = () => {
-    if (since) {
-      const FiltredArr = appointments.filter(item => item.date >= since);
-      setFilter([...FiltredArr]);
-    } else if (by) {
-      const FiltredArr = appointments.filter(item => item.date <= by);
-      setFilter([...FiltredArr]);
-    }
-    if (!since && !by) {
-      setFilter([...appointments]);
-    } else {
-      const FiltredArr = appointments.filter(item => item.date >= since).filter(item => item.date <= by);
-      setFilter([...FiltredArr]);
-    }
+  const filterDate = () => {   
+    if (!since && !by) return setFilter([...appointments]);
+    let filtredArr = [...appointments];
+    if (since) filtredArr = filtredArr.filter(item => item.date >= since);
+    if (by) filtredArr = filtredArr.filter(item => item.date <= by);
+    return setFilter([...filtredArr]);
   }
 
   const handleChangeFirstDate = (e) => {
@@ -64,7 +56,7 @@ const FilterComponent = ({ setButton, appointments, setFilter }) => {
       </div>
       <div className='filter-button-container'>
         <Button
-          className='filter'
+          className='filter-submit'
           variant="outlined"
           onClick={() => filterDate()}
         >
