@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import './ModalEditComponent.scss';
 
-const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment }) => {
+const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter }) => {
   const { name, date, cause, _id } = row;
   const [inputs, setInputs] = useState({ inputName: name, inputDate: date, inputCause: cause });
   const { inputName, inputDate, inputCause } = inputs;
@@ -56,6 +56,7 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment }) => {
       }
     }).then(res => {
       setAppointment(res.data.data);
+      setFilter(res.data.data);
     });
   }
 

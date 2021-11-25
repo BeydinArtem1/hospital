@@ -4,9 +4,10 @@ import {
   MenuItem,
   FormControl
 } from '@mui/material';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import './SortComponent.scss';
 
-const SortComponent = ({ appointments, setAppointment }) => {
+const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
   const [section, setSection] = useState('');
   const [vector, setVector] = useState('ascending');
   const direction = [
@@ -40,9 +41,9 @@ const SortComponent = ({ appointments, setAppointment }) => {
 
   const sortAppointment = (field, dir) => {
     if (field === 'none') field = '_id';
-    appointments.sort((a, b) => a[field] > b[field] ? 1 : a[field] < b[field] ? -1 : 0);
-    if (dir === 'descending') appointments.reverse();
-    setAppointment([...appointments]);
+    filter.sort((a, b) => a[field] > b[field] ? 1 : a[field] < b[field] ? -1 : 0);
+    if (dir === 'descending') filter.reverse();
+    setAppointment([...filter]);
   }
 
   const handleSortValue = (e) => {
@@ -109,6 +110,13 @@ const SortComponent = ({ appointments, setAppointment }) => {
           </FormControl>
         </div>
       }
+      { !filterButton && <div className='filter-button'>
+       <p>Добавить фильтр по дате:</p>
+        <AddBoxIcon 
+        className='add-icon'
+        onClick={() => setButton(true)}
+        />
+     </div>}
     </div>
   )
 }

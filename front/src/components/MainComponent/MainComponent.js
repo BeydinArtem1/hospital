@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import Header from '../HeaderComponent/HeaderComponent';
 import MainInput from '../MainInputComponent/MainInputComponent';
 import Sort from '../SortComponent/SortComponent';
+import Filter from '../FilterComponent/FilterComponent';
 import Table from '../TableComponent/TableComponent';
 import ModalDelete from '../ModalDeleteComponent/ModalDeleteComponent';
 import ModalEdit from '../ModalEditComponent/ModalEditComponent';
@@ -17,6 +18,8 @@ const MainComponent = () => {
   const [appointments, setAppointment] = useState([]);
   const [editOpen, setEdit] = useState(false);
   const [open, setOpen] = useState(false);
+  const [filterButton, setButton] = useState(false);
+  const [filter, setFilter] = useState([]);
 
   const history = useHistory();
 
@@ -27,6 +30,7 @@ const MainComponent = () => {
       }
     }).then(res => {
       setAppointment(res.data.data);
+      setFilter(res.data.data);
     });
   }, []);
 
@@ -51,11 +55,20 @@ const MainComponent = () => {
         setAppointment={setAppointment}
       />
       <Sort
-        appointments={appointments}
+        filter={filter}
         setAppointment={setAppointment}
+        filterButton={filterButton}
+        setButton={setButton}
       />
+      {
+        filterButton && <Filter
+          setButton={setButton}
+          appointments={appointments}
+          setFilter={setFilter}
+        />
+      }
       <Table
-        appointments={appointments}
+        filter={filter}
         setRow={setRow}
         setEdit={setEdit}
         setOpen={setOpen}
@@ -63,12 +76,14 @@ const MainComponent = () => {
       />
       <ModalDelete
         open={open}
+        setFilter={setFilter}
         setOpen={setOpen}
         id={id}
         setAppointment={setAppointment}
       />
       {editOpen && <ModalEdit
         row={row}
+        setFilter={setFilter}
         editOpen={editOpen}
         setEdit={setEdit}
         setAppointment={setAppointment}
