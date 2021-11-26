@@ -16,8 +16,17 @@
     font-size: 20px;
   }
 
+  .inputs-container {
+    width: 18%;
+
+    .date-input {
+      width: 100%;
+    }
+  }
+
   .autocomplete-input {
     background-color: white;
+    width: 100%;
         
     div {
       font-size: 18px;      
@@ -45,5 +54,33 @@
     text-transform: capitalize;    
     min-width: 140px;
     min-height: 50px;    
+  }
+}
+
+@media (max-width: 1024px) {
+  .header .children {    
+    min-width: 25%;
+  }
+
+  .values-container {
+    flex-wrap: wrap;
+
+    .inputs-container {
+      width: 30%;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .values-container .inputs-container {
+    width: 80%;    
+  }
+  
+  .values-container .add-button {
+    margin: 10px;
+  }
+
+  .header .children button {    
+    min-width: unset;
   }
 }

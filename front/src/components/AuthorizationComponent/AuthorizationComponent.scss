@@ -3,8 +3,8 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;  
-  width: 550.5px;
-  height: 650px;
+  width: 37%;
+  height: 65vh;
   left: 55%;
   top: 21%;
   background: #FFFFFF;
@@ -34,8 +34,7 @@
     width: 75%;
     margin-top: -10%; 
 
-    input {
-      min-width: 410px;
+    input {      
       height: 50px;
       background: #FFFFFF;
       border: 1px solid rgba(0, 0, 0, 0.2);
@@ -69,4 +68,26 @@
       min-height: 50px;
     }   
   }  
+}
+
+@media (max-width: 425px) {
+  .container {
+    height: 70vh;
+
+    .label {
+      font-size: 18px;
+    }
+
+    .sign-val button {
+      min-height: 40px;
+    }
+
+    .input-conainer input {
+      height: 40px;
+    }
+
+    h1 {
+      font-size: 2.2em;
+    }
+  } 
 }

@@ -32,7 +32,7 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter 
       label: 'Пупкин Василий Анатольевич'
     },
     {
-      label: 'Дудаев Илья Александрович'
+      label: 'Дударев Илья Александрович'
     }
   ];
 

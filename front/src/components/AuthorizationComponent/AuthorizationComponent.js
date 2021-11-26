@@ -52,7 +52,6 @@ const AuthorizationComponent = () => {
         <p className="label">Login:</p>
         <TextField
           fullWidth
-          label='Login'
           variant='outlined'
           type='text'
           onChange={(e) => setLogin(e.target.value)}
@@ -60,7 +59,6 @@ const AuthorizationComponent = () => {
         <p className="label">Password:</p>
         <TextField
           fullWidth
-          label='Password'
           variant='outlined'
           type='password'
           onChange={(e) => setPassword(e.target.value)}

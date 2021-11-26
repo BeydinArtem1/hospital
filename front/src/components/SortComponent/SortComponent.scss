@@ -72,3 +72,15 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .sort-container {
+    flex-direction: column;
+    align-items: center;
+
+    .sort-by, .sort-direction, .filter-button {
+      width: 70%;
+      margin: 0;
+    }    
+  }
+}

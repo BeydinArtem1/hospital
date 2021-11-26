@@ -56,7 +56,6 @@ const RegistrationComponent = () => {
         <TextField
           fullWidth
           id='outlined-basic'
-          label='Login'
           variant='outlined'
           type='text'
           onChange={(e) => setLogin(e.target.value)} />
@@ -64,7 +63,6 @@ const RegistrationComponent = () => {
         <TextField
           fullWidth
           id='outlined-basic'
-          label='Password'
           variant='outlined'
           type='password'
           onChange={(e) => setPassword(e.target.value)} />
@@ -72,7 +70,6 @@ const RegistrationComponent = () => {
         <TextField
           fullWidth
           id='outlined-basic'
-          label='Password'
           variant='outlined'
           type='password'
           onChange={(e) => setRepeat(e.target.value)} />
