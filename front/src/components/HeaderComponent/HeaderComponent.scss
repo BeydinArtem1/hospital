@@ -48,3 +48,19 @@
     }
   }
 }
+
+@media (max-width: 425px) {
+  .header .header-container p {
+    font-size: 1.9em;
+  }
+
+  .header .header-container img {
+    width: 30%;
+  }
+}
+
+@media (max-width: 320px) {
+  .header .header-container p {
+    font-size: 1.6em;
+  } 
+}

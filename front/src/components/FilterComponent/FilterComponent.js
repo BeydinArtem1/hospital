@@ -7,7 +7,7 @@ const FilterComponent = ({ setButton, appointments, setFilter }) => {
   const [since, setSience] = useState('');
   const [by, setBy] = useState('');
 
-  const filterDate = () => {   
+  const filterDate = () => {
     if (!since && !by) return setFilter([...appointments]);
     let filtredArr = [...appointments];
     if (since) filtredArr = filtredArr.filter(item => item.date >= since);

@@ -4,7 +4,7 @@ import {
   Button,
   TextField,
   Autocomplete
-}from '@mui/material';
+} from '@mui/material';
 import './MainInputComponent.scss';
 
 const MainInputComponent = ({ appointments, setAppointment }) => {
@@ -25,7 +25,7 @@ const MainInputComponent = ({ appointments, setAppointment }) => {
       label: 'Пупкин Василий Анатольевич'
     },
     {
-      label: 'Дудаев Илья Александрович'
+      label: 'Дударев Илья Александрович'
     }
   ];
 
@@ -53,18 +53,20 @@ const MainInputComponent = ({ appointments, setAppointment }) => {
 
   return (
     <div className='values-container'>
-      <div>
+      <div className='inputs-container'>
         <p>Имя:</p>
         <TextField
+          fullWidth
           variant='outlined'
           type='text'
           value={name}
           onChange={(e) => setInput({ ...inputs, name: e.target.value })}
         />
       </div>
-      <div>
+      <div className='inputs-container'>
         <p>Врач:</p>
         <Autocomplete
+          fullWidth
           className='autocomplete-input'
           disablePortal
           id="controllable-states-demo"
@@ -81,9 +83,11 @@ const MainInputComponent = ({ appointments, setAppointment }) => {
           renderInput={(params) => <TextField {...params} />}
         />
       </div>
-      <div>
+      <div className='inputs-container'>
         <p>Дата:</p>
         <TextField
+          fullWidth
+          className='date-input'
           id='date'
           type='date'
           defaultValue={date}
@@ -94,9 +98,10 @@ const MainInputComponent = ({ appointments, setAppointment }) => {
           }}
         />
       </div>
-      <div>
+      <div className='inputs-container'>
         <p>Жалобы:</p>
         <TextField
+          fullWidth
           value={cause}
           variant='outlined'
           type='text'

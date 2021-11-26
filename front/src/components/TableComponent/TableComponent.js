@@ -29,7 +29,7 @@ const TableComponent = ({ filter, setOpen, setId, setEdit, setRow }) => {
     <div className='table-container'>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          <TableHead className='table-head'>
             <TableRow>
               <TableCell>Имя</TableCell>
               {
@@ -43,7 +43,7 @@ const TableComponent = ({ filter, setOpen, setId, setEdit, setRow }) => {
               }
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className='table-body'>
             {filter.map((row) => (
               <TableRow
                 key={row._id}

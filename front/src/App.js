@@ -34,9 +34,13 @@ const App = () => {
           <Registration />
         </div>
       </Route>
-      <Route path='/main'>
-        <MainComponent />
-      </Route>
+      <Route 
+        path='/main' 
+        render={() => localStorage.getItem('token') 
+          ? <MainComponent /> 
+          : <Redirect to='/signin' />
+        }
+      />
       <Redirect from='/' to='/signin' />
     </Switch>
   );
