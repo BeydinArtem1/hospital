@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   TextField,
   Autocomplete
 } from '@mui/material';
+import ruLocale from 'date-fns/locale/ru';
+import DatePicker from '@mui/lab/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import './MainInputComponent.scss';
 
-const MainInputComponent = ({ appointments, setAppointment }) => {
+const MainInputComponent = ({ appointments, setAppointment, setFilter, filter }) => {
+  const history = useHistory();
   const doctor = [
     {
       label: 'Иванов Иван Иванович'
@@ -28,27 +35,34 @@ const MainInputComponent = ({ appointments, setAppointment }) => {
       label: 'Дударев Илья Александрович'
     }
   ];
-
+  const localeMap = ruLocale;
+  const maskMap = '__.__.____';
   const [value, setValue] = useState(doctor[0]);
-  const [inputs, setInput] = useState({ name: '', date: '', cause: '' })
+  const [inputs, setInput] = useState({ name: '', date: moment().format('YYYY-MM-DD'), cause: '' })
   const [doc, setDoc] = useState('');
   const { name, date, cause } = inputs;
 
   const saveAppointment = async () => {
-    await axios.post('http://localhost:8000/saveAppointment', {
-      name,
-      doc,
-      date,
-      cause
-    }, {
-      headers: {
-        token: localStorage.getItem('token')
-      }
-    }).then(res => {
-      appointments.push(res.data.data);
-      setAppointment([...appointments]);
-      setInput({ name: '', date: '', cause: '' });
-    });
+    try {
+      await axios.post('http://localhost:8000/saveAppointment', {
+        name: name.trim(),
+        doc,
+        date,
+        cause: cause.trim()
+      }, {
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      }).then(res => {
+        appointments.push(res.data.data);
+        setAppointment([...appointments]);
+        filter.push(res.data.data);
+        setFilter([...filter]);
+        setInput({ name: '', date: moment().format('YYYY-MM-DD'), cause: '' });
+      });
+    } catch {
+      history.push('/');
+    }
   }
 
   return (
@@ -80,23 +94,27 @@ const MainInputComponent = ({ appointments, setAppointment }) => {
             setDoc(newInputValue);
           }}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField fullWidth {...params} />}
         />
       </div>
       <div className='inputs-container'>
         <p>Дата:</p>
-        <TextField
-          fullWidth
-          className='date-input'
-          id='date'
-          type='date'
-          defaultValue={date}
-          onChange={(e) => setInput({ ...inputs, date: e.target.value })}
-          sx={{ width: 220 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+        <div className='date-adapter'>
+          <LocalizationProvider
+            dateAdapter={AdapterDateFns}
+            locale={localeMap}
+          >
+            <DatePicker
+              className='date-input'
+              mask={maskMap}
+              value={date}
+              minDate={new Date("01-01-2021")}
+              maxDate={new Date("12-31-2022")}
+              onChange={(newValue) => setInput({ ...inputs, date: newValue })}
+              renderInput={(params) => <TextField fullWidth {...params} />}
+            />
+          </LocalizationProvider>
+        </div>
       </div>
       <div className='inputs-container'>
         <p>Жалобы:</p>
@@ -111,7 +129,7 @@ const MainInputComponent = ({ appointments, setAppointment }) => {
       <Button
         className='add-button'
         variant='outlined'
-        disabled={(name && doc && date && cause) ? false : true}
+        disabled={(name.trim() && doc && date && cause.trim()) ? false : true}
         onClick={() => saveAppointment()}
       >
         Добавить

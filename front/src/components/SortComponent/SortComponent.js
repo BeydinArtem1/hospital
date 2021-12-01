@@ -10,6 +10,7 @@ import './SortComponent.scss';
 const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
   const [section, setSection] = useState('');
   const [vector, setVector] = useState('ascending');
+
   const direction = [
     {
       key: 'ascending',
@@ -42,7 +43,7 @@ const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
   const sortAppointment = (field, dir) => {
     if (field === 'none') field = '_id';
     filter.sort((a, b) => a[field] > b[field] ? 1 : a[field] < b[field] ? -1 : 0);
-    if (dir === 'descending') filter.reverse();
+    if (dir === 'descending' && field !== '_id') filter.reverse();
     setAppointment([...filter]);
   }
 
@@ -121,4 +122,4 @@ const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
   )
 }
 
-export default SortComponent
+export default SortComponent;

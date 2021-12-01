@@ -1,9 +1,36 @@
 .table-container {  
   margin: 3%; 
-  max-height: 47vh;
+  max-height: 40vh;
   overflow-y: auto; 
 
-  .table-head {
-    background-color: gainsboro;
+  .table-body .table-row {
+    text-overflow: ellipsis;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-width: 5vw;
   }
+
+  .table-body .table-row:hover {
+    text-overflow: unset;
+    word-wrap: break-word;
+  }
+
+  .table-head {
+    font-size: 24px;
+    background-color: gainsboro;
+
+    .tab-cell {
+      font-size: 1.275rem;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;  
+  background: transparent;  
+}
+
+html {
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
 }

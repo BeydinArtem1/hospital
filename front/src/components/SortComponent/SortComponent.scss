@@ -73,6 +73,12 @@
   }
 }
 
+@media (max-width: 1024px) {  
+  .sort-container .filter-button {
+    width: 30%;
+  }
+}
+
 @media (max-width: 768px) {
   .sort-container {
     flex-direction: column;
