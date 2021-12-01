@@ -40,8 +40,8 @@ const AuthorizationComponent = () => {
         } catch {
           setSnack({ open: true, alert: 'invalid login or password' });
         }
-      } else setSnack({ open: true, alert: 'invalid password' });
-    } else setSnack({ open: true, alert: 'invalid login' });
+      } else setSnack({ open: true, alert: 'password should contain at least 6 letters and at least 1 symvol' });
+    } else setSnack({ open: true, alert: 'login should contain at least 6 letters' });
   }
 
   const { open, alert } = snack;

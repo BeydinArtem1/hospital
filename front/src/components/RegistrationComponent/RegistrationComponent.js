@@ -43,8 +43,8 @@ const RegistrationComponent = () => {
             setSnack({ open: true, alert: 'this user already exists' });
           }
         } else setSnack({ open: true, alert: 'Passwords art different' });
-      } else setSnack({ open: true, alert: 'Password is invalid' });
-    } else setSnack({ open: true, alert: 'invalid login' });
+      } else setSnack({ open: true, alert: 'password should contain at least 6 letters and at least 1 symvol' });
+    } else setSnack({ open: true, alert: 'login should contain at least 6 letters' });
   }
   const { open, alert } = snack;
 

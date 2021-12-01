@@ -29,8 +29,8 @@ const MainComponent = () => {
         token: localStorage.getItem('token')
       }
     }).then(res => {
-      setAppointment(res.data.data);
-      setFilter(res.data.data);
+      setAppointment([...res.data.data]);
+      setFilter([...res.data.data]);
     });
   }, []);
 
@@ -38,6 +38,10 @@ const MainComponent = () => {
     history.push('/');
     setAppointment([]);
     localStorage.removeItem('token');
+  }
+
+  const handleCancelFilterButton = () => {
+    setFilter([...appointments]);
   }
 
   return (
@@ -53,18 +57,21 @@ const MainComponent = () => {
       <MainInput
         appointments={appointments}
         setAppointment={setAppointment}
+        setFilter={setFilter}
+        filter={filter}
       />
       <Sort
         filter={filter}
-        setAppointment={setAppointment}
+        setAppointment={setFilter}
         filterButton={filterButton}
         setButton={setButton}
       />
       {
         filterButton && <Filter
           setButton={setButton}
-          appointments={appointments}
+          appointments={filter}
           setFilter={setFilter}
+          onCancelFilterButton={handleCancelFilterButton}
         />
       }
       <Table

@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 import {
   Button,
   Dialog,
   List,
+  Snackbar,
   ListItem,
   TextField,
   Autocomplete
 } from '@mui/material';
+import ruLocale from 'date-fns/locale/ru';
+import DatePicker from '@mui/lab/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import './ModalEditComponent.scss';
 
 const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter }) => {
@@ -15,6 +21,10 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter 
   const [inputs, setInputs] = useState({ inputName: name, inputDate: date, inputCause: cause });
   const { inputName, inputDate, inputCause } = inputs;
   const [doc, setDoc] = useState('');
+  const [snack, setSnack] = useState({ open: false, alert: '' });
+  const history = useHistory();
+  const localeMap = ruLocale;
+  const maskMap = '__.__.____';
   const doctor = [
     {
       label: 'Иванов Иван Иванович'
@@ -44,22 +54,29 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter 
   }
 
   const saveAppointment = async () => {
-    await axios.patch('http://localhost:8000/updateAppointment', {
-      _id,
-      name: inputName,
-      doc,
-      date: inputDate,
-      cause: inputCause
-    }, {
-      headers: {
-        token: localStorage.getItem('token')
+    if (inputName.trim() && inputCause.trim() && doc.trim()) {
+      try {
+        await axios.patch('http://localhost:8000/updateAppointment', {
+          _id,
+          name: inputName.trim(),
+          doc,
+          date: inputDate,
+          cause: inputCause.trim()
+        }, {
+          headers: {
+            token: localStorage.getItem('token')
+          }
+        }).then(res => {
+          setAppointment(res.data.data);
+          setFilter(res.data.data);
+        });
+      } catch {
+        history.push('/');
       }
-    }).then(res => {
-      setAppointment(res.data.data);
-      setFilter(res.data.data);
-    });
+    } else setSnack({ open: true, alert: 'please fill all fields correctly' });
   }
 
+  const { open, alert } = snack;
   return (
     <Dialog
       className='main-edit-container'
@@ -91,7 +108,7 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter 
               fullWidth
               className='autocomplete-input'
               disablePortal
-              id="controllable-states-demo"
+              id='controllable-states-demo'
               value={value}
               onChange={(event, newValue) => setValue(newValue)}
               options={doctor}
@@ -102,20 +119,29 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter 
           </div>
           <div className='edit-input-container'>
             <p>Дата:</p>
-            <TextField
-              fullWidth
-              className='date-input'
-              id='date'
-              type='date'
-              defaultValue={inputDate}
-              onChange={(e) => setInputs({ ...inputs, inputDate: e.target.value })}
-              InputLabelProps={{ shrink: true, }}
-            />
+            <div className='date-adapter'>
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+                locale={localeMap}
+              >
+                <DatePicker
+                  className='date-input'
+                  mask={maskMap}
+                  value={inputDate}
+                  minDate={new Date('01-01-2021')}
+                  maxDate={new Date('12-31-2022')}
+                  onChange={(newValue) => setInputs({ ...inputs, inputDate: newValue })}
+                  renderInput={(params) => <TextField fullWidth {...params} />}
+                />
+              </LocalizationProvider>
+            </div>
           </div>
           <div className='edit-input-container'>
             <p>Жалобы:</p>
             <TextField
               fullWidth
+              multiline
+              rows={4}
               value={inputCause}
               variant='outlined'
               type='text'
@@ -126,20 +152,26 @@ const ModalEditComponent = ({ editOpen, setEdit, row, setAppointment, setFilter 
         <ListItem className='modal-button' >
           <Button
             className='cansel'
-            variant="outlined"
+            variant='outlined'
             onClick={() => setEdit(false)}
           >
             Cancel
           </Button>
           <Button
             className='save'
-            variant="outlined"
+            variant='outlined'
             onClick={() => handleClick()}
           >
             Save
           </Button>
         </ListItem>
       </List>
+      <Snackbar
+        onClose={() => setSnack({ open: false })}
+        open={open}
+        autoHideDuration={1500}
+        message={alert}
+      />
     </Dialog>
   )
 }
