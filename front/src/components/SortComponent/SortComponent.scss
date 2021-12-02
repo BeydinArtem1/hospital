@@ -28,6 +28,14 @@
   align-items: flex-end;
   width: 100%;
 
+  .close-sort-btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 53%;
+    font-size: 45px;
+    display: none;
+  }
+
   .filter-button {
     display: flex;
     flex-direction: row;
@@ -89,4 +97,77 @@
       margin: 0;
     }    
   }
+}
+
+@media (max-width: 375px) {
+  .phone-sort {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    .sort-direction {
+      width: 70%;
+    }
+
+    .filter-button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 70%;
+      margin-right: 5%;
+      height: 50%;
+
+      p {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+      }
+
+      .add-icon {     
+        font-size: 45px;
+      }
+    }
+
+    .sort-by {
+      display: flex;
+      flex-direction: column;    
+      width: 70%;
+      margin-right: 5%;
+
+      p {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+      }
+
+      .sort-form {
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        border-radius: 4px;  
+        font-size: 18px;
+        padding: 0%;
+      }
+    }
+  }
+
+  .close-sort-btn { 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 53%;
+    display: block; 
+    
+    .MuiSvgIcon-root {
+      font-size: 2.3rem;   
+    }
+  }
+
+  .sort-container{
+    display: none;
+  }  
 }

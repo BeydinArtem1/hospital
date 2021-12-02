@@ -8,7 +8,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import moment from 'moment';
 import './FilterComponent.scss';
 
-const FilterComponent = ({ setButton, appointments, setFilter, onCancelFilterButton }) => {
+const FilterComponent = ({ setButton, appointments, setFilter, onCancelFilterButton, sortClass }) => {
   const [since, setSience] = useState('');
   const [by, setBy] = useState('');
   const localeMap = ruLocale;
@@ -19,7 +19,8 @@ const FilterComponent = ({ setButton, appointments, setFilter, onCancelFilterBut
     let filtredArr = [...appointments];
     if (since) filtredArr = filtredArr.filter(item => item.date >= moment(since).format('YYYY-MM-DD'));
     if (by) filtredArr = filtredArr.filter(item => item.date <= moment(by).format('YYYY-MM-DD'));
-    return setFilter([...filtredArr]);
+    if (sortClass) setButton(false);
+    return setFilter([...filtredArr]);    
   }
 
   const handleChangeFirstDate = (e) => {
