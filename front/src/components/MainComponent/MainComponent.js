@@ -20,6 +20,7 @@ const MainComponent = () => {
   const [open, setOpen] = useState(false);
   const [filterButton, setButton] = useState(false);
   const [filter, setFilter] = useState([]);
+  const [sortClass, setSortClass] = useState(false);
 
   const history = useHistory();
 
@@ -55,12 +56,16 @@ const MainComponent = () => {
         </Button>
       </Header>
       <MainInput
+        setSortClass={setSortClass}
+        sortClass={sortClass}
         appointments={appointments}
         setAppointment={setAppointment}
         setFilter={setFilter}
         filter={filter}
       />
       <Sort
+        setSortClass={setSortClass}
+        sortClass={sortClass}
         filter={filter}
         setAppointment={setFilter}
         filterButton={filterButton}
@@ -71,6 +76,7 @@ const MainComponent = () => {
           setButton={setButton}
           appointments={filter}
           setFilter={setFilter}
+          sortClass={sortClass}
           onCancelFilterButton={handleCancelFilterButton}
         />
       }

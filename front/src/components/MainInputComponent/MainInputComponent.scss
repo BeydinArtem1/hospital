@@ -57,6 +57,10 @@
   }
 }
 
+.phone-buttons {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .header .children {    
     min-width: 25%;
@@ -82,5 +86,88 @@
 
   .header .children button {    
     min-width: unset;
+  }
+}
+
+@media (max-width: 375px) {
+  .phone-values {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: flex-end;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    padding-bottom: 25px;
+    flex-wrap: wrap;
+  
+    p {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 20px;
+    }
+  
+    .inputs-container {
+      width: 80%; 
+  
+      .date-adapter {
+        background: white;
+      }    
+    }
+  
+    .autocomplete-input {
+      background-color: white;
+      width: 100%;
+          
+      div {
+        font-size: 18px;      
+        padding: 0;
+      }
+    }
+  
+    input {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+      border-radius: 4px;  
+      font-size: 18px;
+      padding: 10px;
+      height: 50px;
+    }
+  
+    .add-button {
+      background: #FFFFFF;
+      border: 1px solid rgba(128, 128, 128, 0.479);
+      box-sizing: border-box;
+      border-radius: 6px;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.8);      
+      text-transform: capitalize;    
+      min-width: 140px;
+      min-height: 50px;    
+    }
+  
+  }
+
+  .phone-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: flex-end;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 25px;
+    padding-bottom: 25px;
+
+    svg {
+    font-size: 50px;      
+    }
+  }
+
+  .values-container {
+    display: none;
   }
 }

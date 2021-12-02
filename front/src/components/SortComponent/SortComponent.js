@@ -5,9 +5,10 @@ import {
   FormControl
 } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import './SortComponent.scss';
 
-const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
+const SortComponent = ({ filter, setAppointment, filterButton, setButton, sortClass, setSortClass }) => {
   const [section, setSection] = useState('');
   const [vector, setVector] = useState('ascending');
 
@@ -41,7 +42,10 @@ const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
   ];
 
   const sortAppointment = (field, dir) => {
-    if (field === 'none') field = '_id';
+    if (field === 'none') {
+      field = '_id';
+      setSortClass(false);
+    };
     filter.sort((a, b) => a[field] > b[field] ? 1 : a[field] < b[field] ? -1 : 0);
     if (dir === 'descending' && field !== '_id') filter.reverse();
     setAppointment([...filter]);
@@ -58,7 +62,7 @@ const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
   }
 
   return (
-    <div className='sort-container'>
+    <div className={sortClass ? 'phone-sort' : 'sort-container'}>
       <div className='sort-by'>
         <p>Сортировать по:</p>
         <FormControl
@@ -118,6 +122,10 @@ const SortComponent = ({ filter, setAppointment, filterButton, setButton }) => {
           onClick={() => setButton(true)}
         />
       </div>}
+      <div className='close-sort-btn'
+      >
+        <CancelPresentationIcon onClick={() => setSortClass(false)} />
+      </div>
     </div>
   )
 }
